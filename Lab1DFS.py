@@ -2,26 +2,26 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import time
 
-def bfs_with_animation(graph, start_node):
+def dfs_with_animation(graph, start_node):
     visited = set()
-    queue = [start_node]
+    stack = [start_node]
     visiting_sequence = []
     complete_sequence = []
 
-    while queue:
-        node = queue.pop(0)
+    while stack:
+        node = stack.pop()
         if node not in visited:
             visited.add(node)
             visiting_sequence.append(node)
             neighbors = list(graph.neighbors(node))
-            queue.extend(neighbors)
+            stack.extend(neighbor for neighbor in neighbors if neighbor not in visited)
             complete_sequence.append(node)
 
             # Print the current visiting and complete sequences
             print("Visiting Sequence:", visiting_sequence)
             print("Complete Sequence:", complete_sequence)
 
-            # Create a visualization for the current state of the BFS
+            # Create a visualization for the current state of the DFS
             draw_graph_with_status(graph, visiting_sequence, complete_sequence)
             time.sleep(1)  # Adjust the delay as needed (1 second in this example)
 
@@ -41,7 +41,7 @@ def draw_graph_with_status(graph, visiting_sequence, complete_sequence):
     # Draw edges
     nx.draw_networkx_edges(graph, pos)
 
-    plt.title("BFS Progress")
+    plt.title("DFS Progress")
     plt.pause(0.1)
     plt.show(block=False)
 
@@ -49,12 +49,12 @@ def draw_graph_with_status(graph, visiting_sequence, complete_sequence):
 G = nx.Graph()
 G.add_edges_from([(1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)])
 
-# Specify the starting node for BFS
+# Specify the starting node for DFS
 start_node = 1
 
-# Run BFS with animation and obtain the visiting and completing sequences
-visiting_sequence, complete_sequence = bfs_with_animation(G, start_node)
+# Run DFS with animation and obtain the visiting and completing sequences
+visiting_sequence, complete_sequence = dfs_with_animation(G, start_node)
 
-# Display the final state of the BFS graph
+# Display the final state of the DFS graph
 draw_graph_with_status(G, visiting_sequence, complete_sequence)
 plt.show()
