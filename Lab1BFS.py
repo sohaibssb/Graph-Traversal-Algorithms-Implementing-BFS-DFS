@@ -2,19 +2,27 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import time
 
+
+#начало алгоритма работы функции
+#/////////////////////////////////////////////////////////////
 def bfs_with_animation(graph, start_node):
-    visited = set()
-    queue = [start_node]
-    visiting_sequence = []
-    complete_sequence = []
+    visited = set() #Посещенный набор
+    queue = [start_node] #Начальный узел
+    visiting_sequence = [] #последовательность посещений
+    complete_sequence = [] #полная последовательность
 
     while queue:
-        node = queue.pop(0)
-        if node not in visited:
+        node = queue.pop(0) # Вывести из очереди первый узел в очереди
+        if node not in visited:  # Проверьте, не был ли посещен узел
+            # Пометить узел как посещенный
             visited.add(node)
+            # Запишите узел как посещенный
             visiting_sequence.append(node)
+            # Найти соседей текущего узла
             neighbors = list(graph.neighbors(node))
+            # Поставьте соседей в очередь для изучения в следующем раунде
             queue.extend(neighbors)
+            # Запишите узел как завершенный
             complete_sequence.append(node)
 
             print("Visiting Sequence:", visiting_sequence)
@@ -45,7 +53,7 @@ def draw_graph_with_status(graph, visiting_sequence, complete_sequence):
 G = nx.Graph()
 G.add_edges_from([(1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)])
 #/////////
-start_node = 1
+start_node = 7
 visiting_sequence, complete_sequence = bfs_with_animation(G, start_node)
 draw_graph_with_status(G, visiting_sequence, complete_sequence)
 plt.show()

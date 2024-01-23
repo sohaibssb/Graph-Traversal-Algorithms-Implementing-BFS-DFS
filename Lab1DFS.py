@@ -21,7 +21,7 @@ def dfs_with_animation(graph, start_node):
             print("Complete Sequence:", complete_sequence)
 
             draw_graph_with_status(graph, visiting_sequence, complete_sequence)
-            time.sleep(1) 
+            time.sleep(2) 
 
     return visiting_sequence, complete_sequence
 
@@ -45,7 +45,7 @@ def draw_graph_with_status(graph, visiting_sequence, complete_sequence):
 G = nx.Graph()
 G.add_edges_from([(1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (3, 7)])
 #/////////  
-start_node = 1
+start_node = 5
 visiting_sequence, complete_sequence = dfs_with_animation(G, start_node)
 draw_graph_with_status(G, visiting_sequence, complete_sequence)
 plt.show()
