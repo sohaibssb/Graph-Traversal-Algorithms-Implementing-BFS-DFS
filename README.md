@@ -1,7 +1,7 @@
-# BFS_Algorithm
+# Graph Traversal Algorithms: Implementing BFS & DFS
 Implement Breadth-First Search & Depth-First Search Algorithms
 
-Programmed by Sohaibssb as a part of Expert systems design Course at Bauman University, Moscow. Start in 10/10/2023.
+Programmed by Sohaibssb as a part of Expert systems design Course at Bauman University, Moscow. 2023.
 
 ------------------
 
